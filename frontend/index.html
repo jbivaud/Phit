@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phit</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Phit</h1>
+    <div id="connection-status" class="status">Checking connection&hellip;</div>
+  </header>
+
+  <section id="connect-panel" class="panel" hidden>
+    <h2>Connect to Garmin</h2>
+    <p class="hint">Credentials are read from the server's <code>.env</code> file by default. If you'd rather not store them there, enter them here for this session only.</p>
+    <form id="connect-form">
+      <input type="email" id="email" placeholder="Garmin email (optional if set in .env)" autocomplete="username" />
+      <input type="password" id="password" placeholder="Garmin password (optional if set in .env)" autocomplete="current-password" />
+      <button type="submit">Connect</button>
+    </form>
+    <form id="mfa-form" hidden>
+      <input type="text" id="mfa-code" placeholder="Enter MFA code" inputmode="numeric" />
+      <button type="submit">Submit code</button>
+    </form>
+    <p id="connect-error" class="error" hidden></p>
+  </section>
+
+  <main id="app" hidden>
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Recent runs</h2>
+        <span class="hint">Select exactly two to compare</span>
+      </div>
+      <table id="runs-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Distance</th>
+            <th>Duration</th>
+            <th>Pace</th>
+            <th>Avg HR</th>
+            <th>Elev gain</th>
+          </tr>
+        </thead>
+        <tbody id="runs-body"></tbody>
+      </table>
+      <button id="compare-btn" disabled>Compare selected runs</button>
+    </section>
+
+    <section id="compare-panel" class="panel" hidden>
+      <h2>Comparison</h2>
+      <div id="compare-output"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
